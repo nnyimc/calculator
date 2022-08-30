@@ -14,12 +14,21 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
   </properties>
   
   <dependencies>
+  	
   	<dependency>
   		<groupId>org.junit.jupiter</groupId>
   		<artifactId>junit-jupiter</artifactId>
   		<version>5.5.1</version>
   		<scope>test</scope>
   	</dependency>
+  	
+  	<dependency>
+  		<groupId>org.assertj</groupId>
+  		<artifactId>assertj-core</artifactId>
+  		<version>3.13.2</version>
+  		<scope>test</scope>
+  	</dependency>
+  	
   </dependencies>
   
   <build>
