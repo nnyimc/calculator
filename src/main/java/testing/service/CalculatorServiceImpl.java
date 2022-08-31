@@ -8,10 +8,11 @@ import testing.presentation.SolutionFormatter;
 public class CalculatorServiceImpl implements CalculatorService {
 	
 	private final Calculator calculator;
-	private SolutionFormatter solutionFormatter;
+	private final SolutionFormatter solutionFormatter;
 	
-	public CalculatorServiceImpl (Calculator calculator) {
+	public CalculatorServiceImpl (Calculator calculator, SolutionFormatter solutionFormatter) {
 		this.calculator = calculator;
+		this.solutionFormatter = solutionFormatter;
 	}
 
 	@Override
@@ -37,6 +38,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 				throw new UnsupportedOperationException("Unsupported calculations");
 		}
 		calculationModel.setSolution(response);
+		calculationModel.setFormattedSolution(solutionFormatter.format(response));
 		return calculationModel;
 	}
 
