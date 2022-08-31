@@ -104,6 +104,99 @@ public class CalculatorServiceTest {
 		// THEN
 		assertThat(formattedResult).isEqualTo("2 000 100");
 	}
-
 	
+	@Test
+	public void shouldUseCalculator_forSubstraction() {
+		
+		// GIVEN
+		when(calculator.substract(12, 5)).thenReturn(7);
+		
+		// WHEN
+		calculatorService
+				.calculate(new CalculationModel(CalculationType.SUBSTRACTION, 12, 5))
+				.getSolution();
+		
+		// THEN
+		verify(calculator, times(1)).substract(12, 5);
+	}
+	
+	@Test
+	public void shouldUseCalculatorSubstraction_thenReturnFormattedResult() {
+	
+		// GIVEN
+		when(calculator.substract(15555, 555)).thenReturn(15000);
+		when(solutionFormatter.format(15000)).thenReturn("15 000");
+		
+		// WHEN
+		String formattedResult = calculatorService
+				.calculate(new CalculationModel(CalculationType.SUBSTRACTION, 15555, 555))
+				.getFormattedSolution();
+		
+		// THEN
+		assertThat(formattedResult).isEqualTo("15 000");
+	}
+	
+	@Test
+	public void shouldUseCalculator_forDivision() {
+		
+		// GIVEN
+		when(calculator.divide(28, 4)).thenReturn(7);
+		
+		// WHEN
+		calculatorService
+			.calculate(new CalculationModel(CalculationType.DIVISION, 28, 4))
+			.getSolution();
+		
+		// THEN
+		verify(calculator, times(1)).divide(28, 4);
+	}
+	
+	@Test
+	public void shouldUseCalculatorDivision_thenReturnFomatterResult() {
+		
+		// GIVEN
+		when(calculator.divide(2000000, 100)).thenReturn(20000);
+		when(solutionFormatter.format(20000)).thenReturn("20 000");
+		
+		// WHEN
+		String  formattedResult = calculatorService
+			.calculate( new CalculationModel(CalculationType.DIVISION, 2000000, 100))
+			.getFormattedSolution();
+		
+		// THEN
+		assertThat(formattedResult).isEqualTo("20 000");
+		
+	}
+	
+	@Test
+	public void shouldUseCalculator_forMultiplication() {
+		
+		// GIVEN
+		when(calculator.multiply(2,5)).thenReturn(10);
+		
+		// WHEN
+		calculatorService
+			.calculate(new CalculationModel(CalculationType.MULTIPLICATION, 2, 5))
+			.getSolution();
+		
+		// THEN
+		verify(calculator, times(1)).multiply(2, 5);
+	}
+
+	@Test
+	public void shouldUseCalculatorMultiplication_thenReturnFormattedResult() {
+		
+		// GIVEN
+	    when(calculator.multiply(100, 100)).thenReturn(10000);
+	    when(solutionFormatter.format(10000)).thenReturn("10 000");
+	    
+	    // WHEN
+	    String formattedResult = calculatorService
+	    	.calculate(new CalculationModel(CalculationType.MULTIPLICATION, 100, 100))
+	    	.getFormattedSolution();
+	    
+	    // THEN
+	    assertThat(formattedResult).isEqualTo("10 000");
+	
+	}
 }
